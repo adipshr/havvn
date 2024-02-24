@@ -44,7 +44,7 @@ const Modal: React.FC<ModalProps> = ({
     setTimeout(() => {
       onClose();
     }, 300);
-  }, [disabled, onClose]);
+  }, [onClose, disabled]);
   const handleSubmit = useCallback(() => {
     if (disabled) {
       return;
@@ -57,12 +57,11 @@ const Modal: React.FC<ModalProps> = ({
       return;
     }
     secondaryAction();
-
-    if (!isOpen) {
-      return null;
-    }
   }, [disabled, secondaryAction]);
 
+  if (!isOpen) {
+    return null;
+  }
   return (
     <>
       <div className="justify-centre items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-800/70">
@@ -140,7 +139,20 @@ ${showModal ? "opacity-100" : "opacity-0"}
                   w-full
                 "
                 >
-                  <Button label="SignIn"/>
+                  {secondaryAction && secondaryActionLabel && (
+                    <Button
+                      outline
+                      disabled={disabled}
+                      label={secondaryActionLabel}
+                      onClick={handleSecondaryAction}
+                    />
+                  )}
+
+                  <Button
+                    disabled={disabled}
+                    label={actionLabel}
+                    onClick={handleSubmit}
+                  />
                 </div>
               </div>
             </div>
