@@ -74,20 +74,21 @@ ${showModal ? "opacity-100" : "opacity-0"}
           >
             <div
               className="
-            translate 
-            h-full 
-            lg:h-auto 
-            md:h-auto 
-            border-0
-            rounded-lg
-             shadow-lg 
-             relative 
-             flex 
-             flex-col 
-             w-full
-             bg-white 
-             outline-none
-            focus:outline-none"
+              translate
+              h-full
+              lg:h-auto
+              md:h-auto
+              border-0 
+              rounded-lg 
+              shadow-lg 
+              relative 
+              flex 
+              flex-col 
+              w-full
+              bg-white 
+              outline-none 
+              focus:outline-none
+            "
             >
               {/* Header */}
               <div className="flex items-center p-6 rounded-t justify-center relative border-b-[1px]">
@@ -154,6 +155,7 @@ ${showModal ? "opacity-100" : "opacity-0"}
                     onClick={handleSubmit}
                   />
                 </div>
+                {footer}
               </div>
             </div>
           </div>
