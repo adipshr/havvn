@@ -20,7 +20,7 @@ const UserMenu = () => {
           onClick={() => {}}
           className="hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer"
         >
-          Havvn Your Home
+          <span className="text-purple-500">Havvn Your Home</span>
         </div>
         <div
           onClick={toggleOpen}
