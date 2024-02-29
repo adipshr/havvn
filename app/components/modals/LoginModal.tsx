@@ -1,10 +1,7 @@
 "use client";
-
-import axios from "axios";
 import { useState, useCallback } from "react";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import { FaTwitter } from "react-icons/fa";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
@@ -54,6 +51,11 @@ const LoginModal = () => {
     });
   };
 
+  const toogle = useCallback(() => {
+    loginModal.onClose();
+    registerModal.onOpen();
+  }, [loginModal, registerModal]);
+
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading title="Welcome back to Havvn" subtitle="Login to your account" />
@@ -102,9 +104,9 @@ const LoginModal = () => {
         "
       >
         <p>
-          Already have an account?
+          First time using Havvn?
           <span
-            onClick={() => {}}
+            onClick={toogle}
             className="
               text-neutral-800
               cursor-pointer 
@@ -112,12 +114,13 @@ const LoginModal = () => {
             "
           >
             {" "}
-            Log in
+            Create an account
           </span>
         </p>
       </div>
     </div>
   );
+
   return (
     <Modal
       disabled={isLoading}
