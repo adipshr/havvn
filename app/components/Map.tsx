@@ -18,7 +18,7 @@ interface MapProps {
   center?: [number, number];
 }
 
-const Map: FC<MapProps> = ({ center = [51, -0.09] }) => {
+const Map: FC<MapProps> = ({ center = [30.40047, 78.07901] }) => {
   return (
     <MapContainer
       center={center}

@@ -1,6 +1,9 @@
+import Container from "./components/Container";
+
 export default function Home() {
   return (
-    <div className="text-rose-500 text-2xl">
-    </div>
+    <Container>
+      <div className="pt-24 grid grid-cols-1 "></div>
+    </Container>
   );
 }
