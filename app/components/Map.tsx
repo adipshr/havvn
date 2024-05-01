@@ -14,7 +14,7 @@ L.Icon.Default.mergeOptions({
 });
 
 interface MapProps {
-  center?: [number, number];
+  center?: [number, number] | undefined;
 }
 
 const Map: FC<MapProps> = ({ center = [30.40047, 78.07901] }) => {

@@ -132,7 +132,13 @@ const SearchModal = () => {
         }}
       />
       <hr />
-      <Map center={location?.latlng} />
+      <Map
+        center={
+          location?.latlng
+            ? [location.latlng[0], location.latlng[1]]
+            : undefined
+        }
+      />
     </div>
   );
 
