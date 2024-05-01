@@ -4,11 +4,11 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo } from "react";
 import { format } from "date-fns";
-
 import useCountries from "@/app/hooks/useCountries";
 import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
 
 import Button from "../Button";
+import HeartButton from "../navbar/HeartButton";
 interface ListingCardProps {
   data: SafeListing;
   reservation?: SafeReservation;
@@ -82,6 +82,8 @@ const ListingCard: React.FC<ListingCardProps> = ({
         >
           <Image
             fill
+            src={data.imageSrc}
+            alt="Listing"
             className="
               object-cover 
               h-full 
@@ -89,8 +91,6 @@ const ListingCard: React.FC<ListingCardProps> = ({
               group-hover:scale-110 
               transition
             "
-            src={data.imageSrc}
-            alt="Listing"
           />
           <div
             className="
@@ -98,7 +98,9 @@ const ListingCard: React.FC<ListingCardProps> = ({
             top-3
             right-3
           "
-          ></div>
+          >
+            <HeartButton listingId={data.id} currentUser={currentUser} />
+          </div>
         </div>
         <div className="font-semibold text-lg">
           {location?.label}, {location?.region}
