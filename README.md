@@ -1,6 +1,4 @@
-# Havvn
-
-![Havvn Logo](https://github.com/adipshr/havvn/tree/master/public/images/havvn-logo.png "Havvn Logo")
+<img src="https://github.com/adipshr/havvn/raw/master/public/images/havvn-logo.png" alt="Havvn Logo" width="250">
 
 Havvn is a rental platform website built using Next.js, MongoDB, Mongoose, Cloudinary, and deployed on Vercel. It allows users to book their own properties as well as book others' properties. Properties can easily be shared using QR codes.
 
