@@ -42,13 +42,16 @@ const RegisterModal = () => {
         loginModal.onOpen();
       })
       .catch((err) => {
-        toast.error("Something went wrong! :(");
+        if (err.response && err.response.data && err.response.data.error) {
+          toast.error(err.response.data.error);
+        } else {
+          toast.error("Something went wrong! :(");
+        }
       })
       .finally(() => {
         setIsLoading(false);
       });
   };
-
   const toogle = useCallback(() => {
     loginModal.onOpen();
     registerModal.onClose();

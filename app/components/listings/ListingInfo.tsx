@@ -50,7 +50,7 @@ const ListingInfo: FC<ListingInfoProps> = ({
           <Avatar src={user?.image} />
         </div>
         <div className="flex items-center gap-4 font-light text-neutral-500">
-          <div>{guestCount} geusts</div>
+          <div>{guestCount} guests</div>
           <div>{roomCount} rooms</div>
           <div>{bathroomCount} bathrooms</div>
         </div>
