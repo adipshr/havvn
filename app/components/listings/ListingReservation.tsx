@@ -1,9 +1,10 @@
 "use client";
 
 import { Range } from "react-date-range";
-
+import { SafeUser, SafeListing } from "@/app/types";
 import Button from "../Button";
 import Calendar from "../inputs/Calendar";
+import { useRouter } from "next/navigation";
 
 interface ListingReservationProps {
   price: number;
@@ -13,6 +14,10 @@ interface ListingReservationProps {
   onSubmit: () => void;
   disabled?: boolean;
   disabledDates: Date[];
+  listing: SafeListing & {
+    user: SafeUser;
+  };
+  currentUser?: SafeUser | null;
 }
 
 const ListingReservation: React.FC<ListingReservationProps> = ({
@@ -23,7 +28,18 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
   onSubmit,
   disabled,
   disabledDates,
+  listing,
+  currentUser,
 }) => {
+  const router = useRouter();
+  let buttonText = null;
+  if (listing.user.email === currentUser?.email) {
+    onSubmit = () => {
+      router.push("/reservations");
+    };
+    buttonText = "Check the Reservations";
+  }
+
   return (
     <div
       className="
@@ -49,7 +65,11 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
       />
       <hr />
       <div className="p-4">
-        <Button disabled={disabled} label="Reserve" onClick={onSubmit} />
+        <Button
+          disabled={disabled}
+          label={buttonText != null ? buttonText : "Reserve"}
+          onClick={onSubmit}
+        />
       </div>
       <hr />
       <div
