@@ -4,7 +4,9 @@ const fromEmail: any = process.env.EMAIL;
 const emailPassword: any = process.env.EMAIL_PASSWORD;
 
 const transporter: Transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
+  service: "gmail",
+  port: 465,
+  secure: true,
   auth: {
     user: fromEmail,
     pass: emailPassword,
@@ -666,21 +668,42 @@ const sendBookingEmail = async (
   </html>
   `;
 
-  const mailOptions = {
-    from: {
-      name: "Havvn",
-      address: fromEmail,
-    },
-    to: receiverEmail,
-    subject: subject,
-    html: emailTemplate, // Assuming emailTemplate is defined somewhere
-  };
-
   try {
-    const info = await transporter.sendMail(mailOptions);
-    console.log("Booking email sent successfully:", info.messageId);
+    await new Promise((resolve, reject) => {
+      transporter.verify(function (error, success) {
+        if (error) {
+          console.log(error);
+          reject(error);
+        } else {
+          console.log("Server is ready to take our messages");
+          resolve(success);
+        }
+      });
+    });
+
+    const mailOptions = {
+      from: {
+        name: "Havvn",
+        address: fromEmail,
+      },
+      to: receiverEmail,
+      subject: subject,
+      html: emailTemplate,
+    };
+
+    const info = await new Promise((resolve, reject) => {
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.error("Reservation email sending email:", error);
+          reject(error);
+        } else {
+          console.log("Reservation email sent successfully:", info.messageId);
+          resolve(info);
+        }
+      });
+    });
   } catch (error) {
-    console.error("Booking email sending error:", error);
+    console.error("Error sending reservation email:", error);
     throw error;
   }
 };
