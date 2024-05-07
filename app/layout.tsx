@@ -9,8 +9,6 @@ import RentModal from "./components/modals/RentModal";
 import SearchModal from "./components/modals/SearchModal";
 import { Suspense } from "react";
 
-const inter = Inter({ subsets: ["latin"] });
-const nunito = Nunito({ subsets: ["latin"] });
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 interface Metadata {

@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import validator from "validator";
 import prisma from "@/app/libs/prismadb";
 import { NextResponse } from "next/server";
+import sendNewUserEmail from "@/app/utils/mailer/sendNewUserEmail";
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -32,6 +33,14 @@ export async function POST(request: Request) {
       hashedPassword,
     },
   });
+
+  const firstName = name.split(" ")[0];
+
+  try {
+    sendNewUserEmail(email, `Hey ${firstName} welcome to Havvn!`, firstName);
+  } catch (error) {
+    console.log("Email not sent", error);
+  }
 
   return NextResponse.json(user);
 }
