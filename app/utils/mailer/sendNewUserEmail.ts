@@ -10,11 +10,11 @@ const transporter: Transporter = nodemailer.createTransport({
   },
 });
 
-const sendNewUserEmail = (
+const sendNewUserEmail = async (
   receiverEmail: string,
   subject: string,
   userName: string
-): void => {
+): Promise<void> => {
   const emailTemplate = `<!DOCTYPE html>
     <html
       xmlns="http://www.w3.org/1999/xhtml"

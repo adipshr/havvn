@@ -1,16 +1,17 @@
 import nodemailer, { Transporter } from "nodemailer";
 
 const fromEmail: any = process.env.EMAIL;
+const emailPassword: any = process.env.EMAIL_PASSWORD;
 
 const transporter: Transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   auth: {
     user: fromEmail,
-    pass: process.env.EMAIL_PASSWORD,
+    pass: emailPassword,
   },
 });
 
-const sendBookingEmail = (
+const sendBookingEmail = async (
   receiverEmail: any,
   subject: any,
   guestName: any,
@@ -19,7 +20,7 @@ const sendBookingEmail = (
   totalPrice: any,
   hostName: any,
   hostEmail: any
-): void => {
+): Promise<void> => {
   const emailTemplate = `<html lang="en">
     <head>
       <meta charset="UTF-8" />
@@ -672,16 +673,16 @@ const sendBookingEmail = (
     },
     to: receiverEmail,
     subject: subject,
-    html: emailTemplate,
+    html: emailTemplate, // Assuming emailTemplate is defined somewhere
   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error("Booking email sending email:", error);
-    } else {
-      console.log("Booking email sent successfully:", info.messageId);
-    }
-  });
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log("Booking email sent successfully:", info.messageId);
+  } catch (error) {
+    console.error("Booking email sending error:", error);
+    throw error;
+  }
 };
 
 export default sendBookingEmail;

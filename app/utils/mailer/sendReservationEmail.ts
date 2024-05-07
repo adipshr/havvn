@@ -10,7 +10,7 @@ const transporter: Transporter = nodemailer.createTransport({
   },
 });
 
-const sendBookingEmail = (
+const sendBookingEmail = async (
   receiverEmail: any,
   subject: any,
   guestName: any,
@@ -18,7 +18,7 @@ const sendBookingEmail = (
   checkInDate: any,
   checkOutDate: any,
   hostName: any
-): void => {
+): Promise<void> => {
   const emailTemplate = `<html lang="en">
     <head>
       <meta charset="UTF-8" />

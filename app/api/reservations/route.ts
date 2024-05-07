@@ -63,7 +63,7 @@ export async function POST(request: Request) {
   );
 
   try {
-    sendReservationEmail(
+    await sendReservationEmail(
       hostEmail, // Receiver's email (host's email)
       `Hey ${hostFirstName}, New Reservation Made for Your Property on Havvn!`, // Email subject
       guestName, // Guest's name
@@ -73,7 +73,7 @@ export async function POST(request: Request) {
       hostFirstName // Host's name
     );
 
-    sendBookingEmail(
+    await sendBookingEmail(
       guestEmail, // Receiver's email
       `Hey ${guestFirstName}, Get Ready for an Amazing Stay!`, // Email subject
       guestFirstName, // Guest's name

@@ -37,7 +37,11 @@ export async function POST(request: Request) {
   const firstName = name.split(" ")[0];
 
   try {
-    sendNewUserEmail(email, `Hey ${firstName} welcome to Havvn!`, firstName);
+    await sendNewUserEmail(
+      email,
+      `Hey ${firstName} welcome to Havvn!`,
+      firstName
+    );
   } catch (error) {
     console.log("Email not sent", error);
   }
