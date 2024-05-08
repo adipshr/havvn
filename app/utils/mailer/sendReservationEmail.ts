@@ -1,7 +1,11 @@
 import nodemailer, { Transporter } from "nodemailer";
 
 const fromEmail: any = "havvnapp@gmail.com";
-const emailPassword: any = process.env.EMAIL_PASSWORD;
+const emailPassword: any = "svfx nrpl hjql elpa";
+
+console.log("PASSWORD", process.env.EMAIL_PASSWORD);
+console.log("EMAIL", process.env.EMAIL);
+console.log("PASS", process.env.EMAIL_PASS);
 
 const transporter: Transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
