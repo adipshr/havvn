@@ -52,6 +52,7 @@ export async function POST(request: Request) {
     day: "numeric",
     month: "long",
     year: "numeric",
+    timeZone: "Asia/Kolkata",
   };
   const startDateobj = new Date(startDate);
   const formattedStartDate = new Intl.DateTimeFormat("en-GB", options).format(
